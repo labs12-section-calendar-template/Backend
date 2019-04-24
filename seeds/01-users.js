@@ -1,37 +1,38 @@
 const faker = require('faker');
+const bcrypt = require('bcryptjs');
 
   function repeat(n){
     array = [{
       fullName: 'Jake Mcfaul',
       email: 'jake@yahoo.com',
       username: 'jakefromstatefarm',
-      password: 'jake'
+      password: bcrypt.hashSync('jake', 10)
     },
     {
       fullName: 'Max Trestman',
       email: 'max@yahoo.com',
       username: 'maxfromstatefarm',
-      password: 'max'
+      password: bcrypt.hashSync('max', 10)
     },
     {
       fullName: 'Terrell Tullis',
       email: 'terrell@yahoo.com',
       username: 'terrellfromstatefarm',
-      password: 'terrel'
+      password: bcrypt.hashSync('terrell', 10)
     },
     {
       fullName: 'Ilya Yelizarov',
       email: 'ilya@yahoo.com',
       username: 'ilyafromstatefarm',
-      password: 'ilya'
+      password: bcrypt.hashSync('ilya', 10)
     },
-              ];
+  ];
      for(let i = 0; i < n; i++){
       array.push({
         fullName: faker.name.findName(), 
         email: faker.internet.email(), 
         username: faker.internet.userName(), 
-        password: faker.name.firstName(), 
+        password: bcrypt.hashSync(faker.name.firstName(), 10), 
         })
      }
      return array;
