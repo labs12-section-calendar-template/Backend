@@ -57,7 +57,7 @@ exports.seed = function(knex, Promise) {
     .then(async function () {
       // Inserts seed entries
        await knex('users').insert( repeat(244))
-       await knex('users').insert(repeatTwo(3))
+       await knex('users').insert(repeatTwo(4))
        return knex('users').insert( repeatTwo(249) );
     });
 };

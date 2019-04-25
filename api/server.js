@@ -1,24 +1,37 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 
 const server = express();
-const authRouter = require('../helpers/00-auth/auth-router')
-const userRouter = require('../helpers/01-users/user-router')
-const groupRouter = require('../helpers/02-groups/group-router')
-const templateRouter = require('../helpers/03-templates/template-router')
-const eventRouter = require('../helpers/04-events/event-router')
+// const authRouter = require('../helpers/00-auth/auth-router') <----- old auth linked here
+const authRouter = require('../auth-routes/auth-router');
+const userRouter = require('../helpers/01-users/user-router');
+const groupRouter = require('../helpers/02-groups/group-router');
+const templateRouter = require('../helpers/03-templates/template-router');
+const eventRouter = require('../helpers/04-events/event-router');
 
-const { authenticate } = require('../helpers/00-auth/authMiddleware')
+const passportSetup = require('../config/passport-setup')
+
+// const { authenticate } = require('../helpers/00-auth/authMiddleware') <--- old auth middleware
+
+// server.use(cookieSession({
+//     maxAge: 24*60*60*1000,
+//     keys: [keys.session.cookieKey]
+// }));
+
+server.use(passport.initialize());
+server.use(passport.session());
 
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
-server.use('/auth', authRouter)
-server.use('/users', userRouter)
-server.use('/groups', groupRouter)
-server.use('/templates', templateRouter)
-server.use('/events', eventRouter)
+server.use('/auth', authRouter);
+server.use('/users', userRouter);
+server.use('/groups', groupRouter);
+server.use('/templates', templateRouter);
+server.use('/events', eventRouter);
 
 server.get('/', (req, res) => {
     res.send("Calendar server is up and running!")
