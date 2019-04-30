@@ -47,4 +47,72 @@ router.post('/', async (req, res) => {
   }
 })
 
+//Gets a template by ID and displays all events for that template
+router.get('/:id/events', async (req, res) =>{
+  try{
+      const events = await Templates.getTemplateEvents(req.params.id)
+      res.status(200).json(events)
+  } catch(error){
+      res.status(500).send('event could not be found')
+  }
+})
+
+//Removes a template
+router.delete('/:id', async (req, res) => {
+  try {
+      const id = await Templates.remove(req.params.id);
+      if (id > 0) {
+          res.status(200).json({ message: 'Template has been deleted' })
+      } else {
+          res.status(404).json({ message: 'Template not found' })
+      }
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Error removing template', error});
+  }
+})
+
+//Gets a template by ID and displays all events for that template
+router.get('/:id/events', async (req, res) =>{
+  try{
+      const events = await Templates.getTemplateEvents(req.params.id)
+      res.status(200).json(events)
+  } catch(error){
+      res.status(500).send('event could not be found')
+  }
+})
+
+//Edits/Updates template
+router.put("/:id", async (req, res) => {
+  try {
+    const template = await Templates.update(req.params.id, req.body);
+
+    if (template) {
+      res.status(200).json({ message: "The template was updated" });
+    } else {
+      res.status(404).json({ message: "The template could not be found" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Error updating template"
+    });
+  }
+})
+
+//Removes a template
+router.delete('/:id', async (req, res) => {
+  try {
+      const id = await Templates.remove(req.params.id);
+      if (id > 0) {
+          res.status(200).json({ message: 'Template has been deleted' })
+      } else {
+          res.status(404).json({ message: 'Template not found' })
+      }
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Error removing template', error});
+  }
+})
+
+
 module.exports = router;
