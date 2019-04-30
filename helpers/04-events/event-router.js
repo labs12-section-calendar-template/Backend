@@ -15,4 +15,10 @@ router.get('/', async (req, res) => {
     }
 })
 
+//getById
+//getBy
+//delete
+//update
+//post
+
 module.exports = router;

@@ -35,4 +35,18 @@ router.get('/:id/groups', async (req, res) =>{
     }
 })
 
+router.post('/', async (req, res) => {
+
+    try {
+        const user = await Users.add(req.body)
+        res.status(200).json(user)
+    } catch(error){
+        res.status(500).send('user could not be added')
+    }
+})
+
+//getBy endpoint returns a user based off of selected body paramater for example: a username.
+//getUserEvents /:id/events
+//delete
+
 module.exports = router;

@@ -14,9 +14,10 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
 
-router.get('/google/redirect', (req, res) =>{
-    console.log(req.query)
-    res.send('you reached the callback api')
+router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
+    console.log(req.user)
+    // res.send(req.user)
+    res.redirect('/profile/');
 })
 
 module.exports = router;

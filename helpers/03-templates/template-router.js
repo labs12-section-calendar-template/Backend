@@ -15,4 +15,12 @@ router.get('/', async (req, res) => {
     }
 })
 
+//getById
+//getBy
+//delete
+//update
+//post
+//getTemplateEvents
+
+
 module.exports = router;

@@ -4,14 +4,16 @@ exports.up = function(knex, Promise) {
   
         tbl.increments();
 
-        tbl.string('fullname', 255).notNullable()
-        tbl.string('email', 255).notNullable()
+        tbl.string('fullname', 255)
+        tbl.string('email', 255)
         
         tbl.string('username', 255)
            .notNullable()
            .unique()
         
-        tbl.string('password', 255).notNullable()
+        tbl.string('googleId', 255)
+        
+        tbl.string('password', 255)
 
         tbl.boolean('isAdmin').default(false);
   
