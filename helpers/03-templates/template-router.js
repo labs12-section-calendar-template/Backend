@@ -57,21 +57,6 @@ router.get('/:id/events', async (req, res) =>{
   }
 })
 
-//Removes a template
-router.delete('/:id', async (req, res) => {
-  try {
-      const id = await Templates.remove(req.params.id);
-      if (id > 0) {
-          res.status(200).json({ message: 'Template has been deleted' })
-      } else {
-          res.status(404).json({ message: 'Template not found' })
-      }
-  } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: 'Error removing template', error});
-  }
-})
-
 //Gets a template by ID and displays all events for that template
 router.get('/:id/events', async (req, res) =>{
   try{
