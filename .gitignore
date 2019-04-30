@@ -1,5 +1,5 @@
 #ignoring DB
-dev.sqlite3
+database/dev.sqlite3
 
 # Logs
 logs
