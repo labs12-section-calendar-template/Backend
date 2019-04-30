@@ -1,4 +1,4 @@
-const db = require('../../database/dbConfig');
+const db = require("../../database/dbConfig");
 
 module.exports = {
     find,
@@ -38,3 +38,4 @@ function getGroupTemplates(groupID){
         .select('templates.*' )
         .where('templates.group_id', groupID)
 }
+
