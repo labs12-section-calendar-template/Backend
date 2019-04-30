@@ -1,21 +1,21 @@
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
-module.exports = {
-    generateToken,
-}
+// module.exports = {
+//     generateToken,
+// }
 
-const secret =  process.env.JWT_SECRET || 'Secrets are best kept out loud'
+// const secret =  process.env.JWT_SECRET || 'Secrets are for the insecure'
 
-function generateToken(user){
+// function generateToken(user){
 
-    const payload = {
-        subject: user.id,
-        username: user.username
-    }
+//     const payload = {
+//         subject: user.id,
+//         username: user.username
+//     }
 
-    const options = {
-        expiresIn: '1d',
-    }
+//     const options = {
+//         expiresIn: '1d',
+//     }
 
-    return jwt.sign(payload, secret, options)
-}
+//     return jwt.sign(payload, secret, options)
+// }
