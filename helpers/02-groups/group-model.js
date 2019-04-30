@@ -6,7 +6,8 @@ module.exports = {
   add,
   getBy,
   remove,
-  getGroupTemplates
+  getGroupTemplates,
+  update
 };
 
 function find() {
@@ -44,4 +45,10 @@ function getGroupTemplates(groupID) {
     .join("groups", "groups.id", "templates.group_id")
     .select("templates.*")
     .where("templates.group_id", groupID);
+}
+
+function update(id, updates) {
+  return db("groups")
+    .where({ id })
+    .update(updates);
 }
