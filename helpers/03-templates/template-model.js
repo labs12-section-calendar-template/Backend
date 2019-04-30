@@ -1,9 +1,9 @@
-const db = require('../../database/dbConfig');
+const db = require("../../database/dbConfig");
 
 module.exports = {
-    find
-}
+  find
+};
 
-function find(){
-    return db('templates');
+function find() {
+  return db("templates");
 }

@@ -1,9 +1,16 @@
-const db = require('../../database/dbConfig');
+const db = require("../../database/dbConfig");
 
 module.exports = {
-    find
+  find,
+  getById
+};
+
+function find() {
+  return db("groups");
 }
 
-function find(){
-    return db('groups');
+function getById(id) {
+  return db("groups")
+    .where({ id })
+    .first();
 }
