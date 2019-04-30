@@ -59,7 +59,7 @@ router.delete('/:id', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Error removing stat', error});
+        res.status(500).json({ message: 'Error removing user', error});
     }
 });
 

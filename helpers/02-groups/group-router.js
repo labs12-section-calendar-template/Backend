@@ -29,8 +29,28 @@ router.get("/:id", async (req, res) => {
     res.status(500).send({ message: "server error" });
   }
 });
-// router.get("/test", (req, res) => {
-//   res.send("sanity check");
-// });
+
+router.get('/:id/templates', async (req, res) =>{
+    try{
+        const templates = await Groups.getGroupTemplates(req.params.id)
+        res.status(200).json(templates)
+    } catch(error){
+        res.status(500).send('Templates could not be found')
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = await Users.remove(req.params.id);
+        if (id > 0) {
+            res.status(200).json({ message: 'Group has been deleted' })
+        } else {
+            res.status(404).json({ message: 'Group not found' })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error removing group', error});
+    }
+});
 
 module.exports = router;
