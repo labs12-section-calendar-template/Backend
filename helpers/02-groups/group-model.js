@@ -4,6 +4,7 @@ module.exports = {
     find,
     findById,
     add,
+    update,
     getBy,
     remove,
     getGroupTemplates
@@ -17,10 +18,16 @@ function findById(id){
     return db('groups').where({ id }).first()
 }
 
-async function add(user){
-    const [id] = await db('groups').insert(user);
+async function add(group){
+    const [id] = await db('groups').insert(group);
 
     return db('groups').where({ id }).first()
+}
+
+function update(id, changes){
+    return db('groups')
+        .where({ id })
+        .update(changes);
 }
 
 function getBy(select){
