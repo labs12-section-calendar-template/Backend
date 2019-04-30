@@ -10,6 +10,10 @@ module.exports = {
   update
 };
 
+function find(){
+  return db('templates');
+}
+
 function getBy(select) {
   return db("groups")
     .where(select)
