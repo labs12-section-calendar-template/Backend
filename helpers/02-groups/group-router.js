@@ -29,8 +29,22 @@ router.get("/:id", async (req, res) => {
     res.status(500).send({ message: "server error" });
   }
 });
-// router.get("/test", (req, res) => {
-//   res.send("sanity check");
-// });
+
+router.post("/", (req, res) => {
+  let group = req.body;
+
+  if (!group.joinCode || !group.name || !group.user_id) {
+    res.status(404).json({ message: "Please provide your group's details" });
+  } else {
+    Groups.add(group)
+      .then(newGroup => {
+        res.status(201).json(newGroup);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(500).json({ error: "server error" });
+      });
+  }
+});
 
 module.exports = router;
