@@ -37,16 +37,31 @@ router.get('/:id/groups', async (req, res) =>{
 
 router.post('/', async (req, res) => {
 
-    try {
-        const user = await Users.add(req.body)
-        res.status(200).json(user)
+    try{
+        const users = await Users.add(req.body)
+        if(users){
+            res.status(200).json(users)
+        } else{
+            res.status(404).send('the users could not be added')
+        }
     } catch(error){
-        res.status(500).send('user could not be added')
+        res.status(500).send(error, 'server error')
     }
 })
 
-//getBy endpoint returns a user based off of selected body paramater for example: a username.
-//getUserEvents /:id/events
-//delete
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = await Users.remove(req.params.id);
+        if (id > 0) {
+            res.status(200).json({ message: 'User has been deleted' })
+        } else {
+            res.status(404).json({ message: 'User not found' })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error removing user', error});
+    }
+});
+
 
 module.exports = router;

@@ -14,7 +14,7 @@ const groupRouter = require('../helpers/02-groups/group-router');
 const templateRouter = require('../helpers/03-templates/template-router');
 const eventRouter = require('../helpers/04-events/event-router');
 
-const passportSetup = require('../config/passport-setup')
+const passportSetup = require("../config/passport-setup");
 
 // const { authenticate } = require('../helpers/00-auth/authMiddleware') <--- old auth middleware
 
