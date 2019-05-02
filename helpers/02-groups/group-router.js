@@ -41,7 +41,7 @@ router.get('/:id/templates', async (req, res) =>{
 
 router.delete('/:id', async (req, res) => {
     try {
-        const id = await Users.remove(req.params.id);
+        const id = await Groups.remove(req.params.id);
         if (id > 0) {
             res.status(200).json({ message: 'Group has been deleted' })
         } else {
