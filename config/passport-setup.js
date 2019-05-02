@@ -31,7 +31,7 @@ passport.use(new GoogleStrategy({
         //if user doesnt exist create new one
         User.add({
             username: profile.displayName,
-            googleId: profile.id
+            googleId: profile.id,
         }).then((newUser => {
             console.log('The created user is')
             return done(null, profile)
