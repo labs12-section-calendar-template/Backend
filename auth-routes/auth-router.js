@@ -18,7 +18,7 @@ router.get("/google", passport.authenticate("google", {
 );
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
-  res.redirect("https://google.com/")
+  res.redirect("https://calendr.netlify.com/")
 })
 
 
