@@ -18,7 +18,7 @@ router.get("/google", passport.authenticate("google", {
 );
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
-  res.redirect(process.env.FRONT_END_URL)
+  res.redirect("https://google.com/")
 })
 
 
