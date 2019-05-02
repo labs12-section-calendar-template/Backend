@@ -68,12 +68,6 @@ exports.up = function(knex, Promise) {
 
         tbl.string('time', 255).notNullable()
 
-        tbl
-        .string('template_color', 255)
-        .notNullable()
-        .references('color')
-        .inTable('templates')
-
         tbl.integer('template_id')
         .unsigned()
         .references('id')
