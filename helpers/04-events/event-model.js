@@ -5,7 +5,8 @@ module.exports = {
     findById,
     add,
     remove,
-    getBy
+    getBy,
+    update
 }
 
 function find(){
@@ -20,6 +21,12 @@ async function add(event){
     const [id] = await db('events').insert(event);
 
     return db('events').where({ id }).first()
+}
+
+function update(id, changes){
+    return db('events')
+        .where({ id })
+        .update(changes);
 }
 
 function remove(id){

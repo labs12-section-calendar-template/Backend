@@ -4,7 +4,7 @@ module.exports = {
     find,
     findById,
     add,
-    getBy,
+    getById,
     remove,
     update,
     getTemplateEvents,
@@ -24,7 +24,7 @@ async function add(template){
     return db('templates').where({ id }).first()
 }
 
-function getBy(select){
+function getById(select){
     return db('templates').where(select).first();
 }
 
