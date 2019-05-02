@@ -27,7 +27,7 @@ function findById(id) {
 }
 
 async function add(user) {
-  const [id] = await db("groups").insert(user);
+  const [id] = await db("groups").insert(user, "*");
 
   return db("groups")
     .where({ id })
@@ -56,5 +56,5 @@ function getGroupTemplates(groupID) {
 function update(id, updates) {
   return db("groups")
     .where({ id })
-    .update(updates);
+    .update(updates, "*");
 }

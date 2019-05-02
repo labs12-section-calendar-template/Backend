@@ -19,7 +19,7 @@ function findById(id){
 }
 
 async function add(template){
-    const [id] = await db('templates').insert(template);
+    const [id] = await db('templates').insert(template, "*");
 
     return db('templates').where({ id }).first()
 }
@@ -36,7 +36,7 @@ function remove(id){
 function update(id, changes){
     return db('templates')
         .where({ id })
-        .update(changes);
+        .update(changes, "*");
 }
 
 function getTemplateEvents(templateID){
