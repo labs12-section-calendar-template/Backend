@@ -24,18 +24,28 @@ passport.use(new GoogleStrategy({
     // Query the database to find user record associated with this
     // google profile, then pass that object to done callback
     User.findByGoogleId(profile.id).then(function(id) {
-      console.log(profile)
       if (id) {
-        console.log('The Current User IS')
-        return done(null, profile);
+        let userData = {
+          id: id,
+          username: profile.displayName,
+          googleId: profile.id,
+          token: accessToken
+        };
+        return done(null, userData);
       } else {
         //if user doesnt exist create new one
+        let userData = {
+          id: id,
+          username: profile.displayName,
+          googleId: profile.id,
+          token: accessToken
+        };
+
         User.add({
             username: profile.displayName,
             googleId: profile.id,
         }).then((newUser => {
-            console.log('The created user is')
-            return done(null, profile)
+            return done(null, userData)
         })).catch(error => {
           console.log(error);
         })
