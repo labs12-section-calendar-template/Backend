@@ -1,5 +1,6 @@
 #ignoring DB
 database/dev.sqlite3
+node_modules/
 
 # Logs
 logs
