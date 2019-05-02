@@ -24,6 +24,7 @@ passport.use(new GoogleStrategy({
     // Query the database to find user record associated with this
     // google profile, then pass that object to done callback
     User.findByGoogleId(profile.id).then(function(id) {
+      console.log(profile)
       if (id) {
         console.log('The Current User IS')
         return done(null, profile);
@@ -35,7 +36,9 @@ passport.use(new GoogleStrategy({
         }).then((newUser => {
             console.log('The created user is')
             return done(null, profile)
-        }))
+        })).catch(error => {
+          console.log(error);
+        })
     }
     });
   })

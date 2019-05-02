@@ -48,7 +48,7 @@ exports.up = function(knex, Promise) {
 
         tbl.string('cycleLength').notNullable()
 
-        tbl.date('dateRange', 255).notNullable()
+        tbl.date('date', 255).notNullable()
 
         tbl.string('color', 255).notNullable()
 

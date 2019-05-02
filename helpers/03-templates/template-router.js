@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Templates = require("./template-model");
+const moment = require('moment')
 
 //Gets all templates
 router.get("/", async (req, res) => {
@@ -36,7 +37,7 @@ router.get("/:id", async (req, res) => {
 router.post('/', async (req, res) => {
 
   try{
-      const template = await Templates.add(req.body)
+      const template = await Templates.add({ ...req.body, date: moment().format("YYYY-MM-DD")})
       if(template){
           res.status(200).json(template)
       } else{
