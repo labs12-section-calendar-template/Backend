@@ -4,8 +4,8 @@ const helmet = require('helmet');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('../config/keys')
-
 const server = express();
+
 // const authRouter = require('../helpers/00-auth/auth-router') <----- old auth linked here
 const authRouter = require('../auth-routes/auth-router');
 const profileRouter = require('../auth-routes/authCheck')
@@ -23,12 +23,19 @@ server.use(cookieSession({
     keys: [keys.session.cookieKey]
 }));
 
+
+const corsOptions = {
+    credentials: true,
+    origin: ['http://localhost:3000']
+  };
+
+  server.use(cors(corsOptions));
+
 server.use(passport.initialize());
 server.use(passport.session());
 
 server.use(express.json());
 server.use(helmet());
-server.use(cors());
 server.use('/auth', authRouter);
 server.use('/users', userRouter);
 server.use('/groups', groupRouter);
