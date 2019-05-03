@@ -8,6 +8,7 @@ module.exports = {
     remove,
     update,
     getTemplateEvents,
+    addEventsToTemplates
 }
 
 function find(){
@@ -40,8 +41,17 @@ function update(id, changes){
 }
 
 function getTemplateEvents(templateID){
-    return db('templates')
-        .join('events', 'template.id', 'events.template_id')
+    return db('events')
+        .join('templates', 'templates.id', 'events.template_id')
         .select('events.*' )
         .where('events.template_id', templateID)
+}
+
+function addEventsToTemplates(event){
+    return db('events')
+    .insert({
+        date: event.date,
+        time: event.time,
+        template_id: event.template_id
+    })
 }

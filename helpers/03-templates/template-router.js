@@ -100,5 +100,21 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+router.post('/:id/events', async (req, res) => {
+  try {
+      const event = await Templates.addEventsToTemplates({
+        date: moment().format("DD"),
+        time: req.body.time,
+        template_id: req.params.id
+  })
+  if(event){
+      res.status(200).json(event)
+  } else {
+      res.status(404).send('could not add the event to the template... User Error')
+  } } catch(error){
+      res.status(500).json(error)
+  }
+})
+
 
 module.exports = router;
