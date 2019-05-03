@@ -7,11 +7,12 @@ module.exports = {
   getBy,
   remove,
   getGroupTemplates,
+  addTemplateToGroup,
   update
 };
 
 function find(){
-  return db('templates');
+  return db('groups');
 }
 
 function getBy(select) {
@@ -57,4 +58,16 @@ function update(id, updates) {
   return db("groups")
     .where({ id })
     .update(updates, "*");
+}
+
+function addTemplateToGroup(template){
+  return db('templates')
+  .insert({
+      title: template.title,
+      description: template.description,
+      cycleLength: template.cycleLength,
+      date: template.date,
+      color: template.color,
+      group_id: template.group_id
+  })
 }
