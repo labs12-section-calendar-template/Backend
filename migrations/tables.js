@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('users', (tbl) => {
   
-        tbl.increments();
+            
 
         tbl.string('fullname', 255)
         tbl.string('email', 255)
@@ -46,9 +46,9 @@ exports.up = function(knex, Promise) {
 
         tbl.string('description', 255).notNullable()
 
-        tbl.string('cycleLength').notNullable()
+        tbl.string('cycleLength', 255).notNullable()
 
-        tbl.date('dateRange', 255).notNullable()
+        tbl.date('date', 255).notNullable()
 
         tbl.string('color', 255).notNullable()
 
@@ -68,27 +68,12 @@ exports.up = function(knex, Promise) {
 
         tbl.string('time', 255).notNullable()
 
-        tbl
-        .string('template_color', 255)
-        .notNullable()
-        .references('color')
-        .inTable('templates')
-
         tbl.integer('template_id')
         .unsigned()
         .references('id')
-        .inTable('users')
+        .inTable('templates')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
-
-        tbl.integer('user_id')
-        .notNullable()
-        .unsigned()
-        .references('id')
-        .inTable('users')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
-
     })
 }
 

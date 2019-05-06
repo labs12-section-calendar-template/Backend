@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Templates = require("./template-model");
+const moment = require('moment')
 
 //Gets all templates
 router.get("/", async (req, res) => {
@@ -36,7 +37,7 @@ router.get("/:id", async (req, res) => {
 router.post('/', async (req, res) => {
 
   try{
-      const template = await Templates.add(req.body)
+      const template = await Templates.add({ ...req.body, date: moment().format("YYYY-MM-DD")})
       if(template){
           res.status(200).json(template)
       } else{
@@ -96,6 +97,22 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
       console.log(error);
       res.status(500).json({ message: 'Error removing template', error});
+  }
+})
+
+router.post('/:id/events', async (req, res) => {
+  try {
+      const event = await Templates.addEventsToTemplates({
+        date: moment().format("DD"),
+        time: req.body.time,
+        template_id: req.params.id
+  })
+  if(event){
+      res.status(200).json(event)
+  } else {
+      res.status(404).send('could not add the event to the template... User Error')
+  } } catch(error){
+      res.status(500).json(error)
   }
 })
 

@@ -35,6 +35,21 @@ router.get('/:id/groups', async (req, res) =>{
     }
 })
 
+router.post('/:id/groups', async (req, res) => {
+    try {const group = await Users.addGroupToUser({
+        joinCode: req.body.joinCode,
+        name: req.body.name,
+        user_id: req.params.id 
+    })
+    if(group){
+        res.status(200).json(group)
+    } else {
+        res.status(404).send('could not add the group to the user... User Error')
+    } } catch(error){
+        res.status(500).json(error)
+    }
+})
+
 router.post('/', async (req, res) => {
 
     try{

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Groups = require("./group-model");
+const moment = require('moment');
 
 router.get("/", async (req, res) => {
   try {
@@ -85,5 +86,24 @@ router.delete('/:id', async (req, res) => {
       res.status(500).json({ message: 'Error removing group', error});
   }
 });
+
+router.post('/:id/templates', async (req, res) => {
+  try {
+      const templates = await Groups.addTemplateToGroup({
+        title: req.body.title,
+        description: req.body.description,
+        cycleLength: req.body.cycleLength,
+        date: moment().format("YYYY-MM-DD"),
+        color: req.body.color,
+        group_id: req.params.id
+  })
+  if(templates){
+      res.status(200).json(templates)
+  } else {
+      res.status(404).send('could not add the template to the group... User Error')
+  } } catch(error){
+      res.status(500).json(error)
+  }
+})
 
 module.exports = router;

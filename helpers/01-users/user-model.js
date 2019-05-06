@@ -7,7 +7,8 @@ module.exports = {
     add,
     getBy,
     remove,
-    getUserGroups
+    getUserGroups,
+    addGroupToUser
 
 }
 
@@ -24,7 +25,7 @@ function findByGoogleId(profileId){
 }
 
 async function add(user){
-    const [id] = await db('users').insert(user);
+    const [id] = await db('users').insert(user, "*");
 
     return db('users').where({ id }).first()
 }
@@ -43,4 +44,13 @@ function getUserGroups(userID){
         .join('users', 'users.id', 'groups.user_id')
         .select('groups.*' )
         .where('groups.user_id', userID)
+}
+
+function addGroupToUser(group){
+    return db('groups')
+    .insert({
+        joinCode: group.joinCode,
+        name: group.name,
+        user_id: group.user_id
+    })
 }

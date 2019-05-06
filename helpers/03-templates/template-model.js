@@ -8,6 +8,7 @@ module.exports = {
     remove,
     update,
     getTemplateEvents,
+    addEventsToTemplates
 }
 
 function find(){
@@ -19,7 +20,7 @@ function findById(id){
 }
 
 async function add(template){
-    const [id] = await db('templates').insert(template);
+    const [id] = await db('templates').insert(template, "*");
 
     return db('templates').where({ id }).first()
 }
@@ -36,12 +37,21 @@ function remove(id){
 function update(id, changes){
     return db('templates')
         .where({ id })
-        .update(changes);
+        .update(changes, "*");
 }
 
 function getTemplateEvents(templateID){
-    return db('templates')
-        .join('events', 'template.id', 'events.template_id')
+    return db('events')
+        .join('templates', 'templates.id', 'events.template_id')
         .select('events.*' )
         .where('events.template_id', templateID)
+}
+
+function addEventsToTemplates(event){
+    return db('events')
+    .insert({
+        date: event.date,
+        time: event.time,
+        template_id: event.template_id
+    })
 }
