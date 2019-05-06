@@ -22,7 +22,8 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
   console.log(token)
   let userId = req.user.id.id;
   console.log(userId)
-  res.redirect(`https://localhost:3000/?token=${token}&userId=${userId}`)
+  res.redirect(`https://calendr.netlify.com?token=${token}&userId=${userId}`)
+  // res.redirect(`http://localhost:3000?token=${token}&userId=${userId}`)
 })
 
 
