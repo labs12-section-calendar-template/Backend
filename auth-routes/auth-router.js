@@ -9,7 +9,7 @@ router.get("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect('https://calendr.netlify.com');
 });
 
 router.get("/google", passport.authenticate("google", {
@@ -24,6 +24,8 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
   console.log(userId)
   res.redirect(`https://calendr.netlify.com?token=${token}&userId=${userId}`)
 })
+//https://localhost:3000
+//https://calendr.netlify.com?token=${token}&userId=${userId}
 
 
 module.exports = router;

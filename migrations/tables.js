@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('users', (tbl) => {
   
-            
+        tbl.increments();
 
         tbl.string('fullname', 255)
         tbl.string('email', 255)
@@ -63,6 +63,10 @@ exports.up = function(knex, Promise) {
 
     .createTable('events', (tbl) => {
         tbl.increments();
+
+        tbl.string('title', 255).notNullable()
+
+        tbl.string('description', 255)
 
         tbl.date('date', 255).notNullable()
 
