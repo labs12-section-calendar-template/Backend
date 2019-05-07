@@ -20,13 +20,13 @@ passport.use(new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret
 
-}, function(accessToken, refreshToken, profile, done) {
+}, async function(accessToken, refreshToken, profile, done) {
     // Query the database to find user record associated with this
     // google profile, then pass that object to done callback
-    User.findByGoogleId(profile.id).then(function(id) {
+    User.findByGoogleId(profile.id).then( async function(id) {
       if (id) {
         let userData = {
-          id: id,
+          id: id.id, //#theKIDGENIUS
           username: profile.displayName,
           googleId: profile.id,
           token: accessToken
@@ -34,21 +34,19 @@ passport.use(new GoogleStrategy({
         return done(null, userData);
       } else {
         //if user doesnt exist create new one
-        let userData = {
-          id: id,
+        let user = await User.add({
+            username: profile.displayName,
+            googleId: profile.id,
+        })
+
+       let userData = {
+          id: user.id,
           username: profile.displayName,
           googleId: profile.id,
           token: accessToken
         };
 
-        User.add({
-            username: profile.displayName,
-            googleId: profile.id,
-        }).then((newUser => {
-            return done(null, userData)
-        })).catch(error => {
-          console.log(error);
-        })
+        return done(null, userData)
     }
     });
   })
