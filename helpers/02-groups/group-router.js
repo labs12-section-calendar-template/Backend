@@ -106,4 +106,17 @@ router.post('/:id/templates', async (req, res) => {
   }
 })
 
+router.post('/getby', async (req, res) => {
+
+      try{
+         group = await Groups.getBy({ name: req.body.name });
+         res.status(200).json(group)
+  
+      } catch(error){
+          res.status(500).json(error)
+      }
+  })
+
+
+
 module.exports = router;
