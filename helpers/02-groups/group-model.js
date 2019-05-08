@@ -57,7 +57,7 @@ function getGroupTemplates(groupID) {
 function update(id, updates) {
   return db("groups")
     .where({ id })
-    .update(updates, "*");
+    .update(updates, "groups.name");
 }
 
 function addTemplateToGroup(template){
