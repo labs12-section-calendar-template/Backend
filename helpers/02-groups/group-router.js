@@ -2,6 +2,8 @@ const router = require("express").Router();
 const Groups = require("./group-model");
 const moment = require('moment');
 
+
+//comment
 router.get("/", async (req, res) => {
   try {
     const groups = await Groups.find();
