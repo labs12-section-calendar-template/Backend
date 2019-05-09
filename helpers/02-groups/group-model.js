@@ -7,7 +7,9 @@ module.exports = {
   getBy,
   remove,
   getGroupTemplates,
+  getGroupMembers,
   addTemplateToGroup,
+  addMember,
   update
 };
 
@@ -27,17 +29,11 @@ function findById(id) {
     .first();
 }
 
-async function add(user) {
-  const [id] = await db("groups").insert(user, "*");
+async function add(group) {
+  const [id] = await db("groups").insert(group, "*");
 
   return db("groups")
     .where({ id })
-    .first();
-}
-
-function getBy(select) {
-  return db("groups")
-    .where(select)
     .first();
 }
 
@@ -52,6 +48,13 @@ function getGroupTemplates(groupID) {
     .join("groups", "groups.id", "templates.group_id")
     .select("templates.*")
     .where("templates.group_id", groupID);
+}
+
+function getGroupMembers(groupId){
+  return db("members")
+    .join("groups", "groups.id", "members.group_id")
+    .select("members.*")
+    .where("members.group_id", groupId)
 }
 
 function update(id, updates) {
@@ -70,4 +73,21 @@ function addTemplateToGroup(template){
       color: template.color,
       group_id: template.group_id
   })
+}
+
+function getBy(select) {
+  return db("groups")
+    .where(select)
+    .first();
+}
+
+//user enters JC -> gets JC -> then adds user to member db with user_id and group_id
+
+async function addMember(member){
+  const [id] = await db("members")
+  .insert(member, "*");
+
+  return db("members")
+    .where({ id })
+    .first();
 }

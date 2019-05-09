@@ -103,7 +103,9 @@ router.delete('/:id', async (req, res) => {
 router.post('/:id/events', async (req, res) => {
   try {
       const event = await Templates.addEventsToTemplates({
-        date: moment().format("DD"),
+        title: req.body.title,
+        description: req.body.description,
+        date: req.body.date,
         time: req.body.time,
         template_id: req.params.id
   })

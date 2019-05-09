@@ -50,6 +50,8 @@ function getTemplateEvents(templateID){
 function addEventsToTemplates(event){
     return db('events')
     .insert({
+        title: event.title,
+        description: event.description,
         date: event.date,
         time: event.time,
         template_id: event.template_id

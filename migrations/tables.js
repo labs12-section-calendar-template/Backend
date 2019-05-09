@@ -42,7 +42,7 @@ exports.up = function(knex, Promise) {
     .createTable('members', (tbl) => {
         tbl.increments();
 
-        tbl.integer('user_id')
+        tbl.integer('user_id').unique()
         .notNullable()
         .unsigned()
         .references('id')
