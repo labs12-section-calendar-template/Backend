@@ -100,6 +100,7 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+//Post event to template
 router.post('/:id/events', async (req, res) => {
   try {
       const event = await Templates.addEventsToTemplates({
