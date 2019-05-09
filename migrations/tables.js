@@ -39,6 +39,27 @@ exports.up = function(knex, Promise) {
 
     })
 
+    .createTable('members', (tbl) => {
+        tbl.increments();
+
+        tbl.integer('user_id')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+
+        tbl.integer('group_id')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('groups')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+
+    })
+
     .createTable('templates', (tbl) => {
         tbl.increments();
 
@@ -85,6 +106,7 @@ exports.down = function(knex, Promise) {
     return knex.schema
     .dropTableIfExists('users')
     .dropTableIfExists('groups')
+    .dropTableIfExists('members')
     .dropTableIfExists('templates')
     .dropTableIfExists('events')
 };
