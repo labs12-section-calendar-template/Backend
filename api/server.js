@@ -11,8 +11,9 @@ const authRouter = require('../auth-routes/auth-router');
 const profileRouter = require('../auth-routes/authCheck')
 const userRouter = require('../helpers/01-users/user-router');
 const groupRouter = require('../helpers/02-groups/group-router');
-const templateRouter = require('../helpers/03-templates/template-router');
-const eventRouter = require('../helpers/04-events/event-router');
+//const membersRouter = require('../helpers/03-members/members-router');
+const templateRouter = require('../helpers/04-templates/template-router');
+const eventRouter = require('../helpers/05-events/event-router');
 
 const passportSetup = require("../config/passport-setup");
 
