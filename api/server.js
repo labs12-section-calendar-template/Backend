@@ -11,7 +11,8 @@ const authRouter = require('../auth-routes/auth-router');
 const profileRouter = require('../auth-routes/authCheck')
 const userRouter = require('../helpers/01-users/user-router');
 const groupRouter = require('../helpers/02-groups/group-router');
-//const membersRouter = require('../helpers/03-members/members-router');
+const memberRouter = require('../helpers/03-members/members-router');
+
 const templateRouter = require('../helpers/04-templates/template-router');
 const eventRouter = require('../helpers/05-events/event-router');
 
@@ -40,6 +41,7 @@ server.use(helmet());
 server.use('/auth', authRouter);
 server.use('/users', userRouter);
 server.use('/groups', groupRouter);
+server.use('/members', memberRouter);
 server.use('/templates', templateRouter);
 server.use('/events', eventRouter);
 server.use('/profile', profileRouter)

@@ -75,6 +75,15 @@ router.get('/:id/templates', async (req, res) =>{
   }
 })
 
+router.get('/:id/members', async (req, res) => {
+  try{
+    const members = await Groups.getGroupMembers(req.params.id)
+    res.status(200).json(members)
+  } catch(error){
+    res.status(500).send('members could not be found')
+  }
+})
+
 router.delete('/:id', async (req, res) => {
   try {
       const id = await Groups.remove(req.params.id);
@@ -108,11 +117,21 @@ router.post('/:id/templates', async (req, res) => {
   }
 })
 
-router.post('/getby', async (req, res) => {
+router.post('/getby/:user_id', async (req, res) => {
 
       try{
-         group = await Groups.getBy({ name: req.body.name });
-         res.status(200).json(group)
+         group = await Groups.getBy({ joinCode: req.body.joinCode });
+         
+         if(group){
+           try{
+             member = await Groups.addMember({ user_id: req.params.user_id, group_id: group.id })
+             res.status(200).json(member)
+           } catch(error){
+             res.status(500).json(error)
+           }
+         } else {
+           res.status(404).send('This is not the group you are looking for')
+         }
   
       } catch(error){
           res.status(500).json(error)
