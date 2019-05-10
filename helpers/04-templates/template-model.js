@@ -1,6 +1,7 @@
 const db = require("../../database/dbConfig");
 
 module.exports = {
+
     find,
     findById,
     add,
@@ -47,13 +48,18 @@ function getTemplateEvents(templateID){
         .where('events.template_id', templateID)
 }
 
-function addEventsToTemplates(event){
-    return db('events')
-    .insert({
-        title: event.title,
-        description: event.description,
-        date: event.date,
-        time: event.time,
-        template_id: event.template_id
-    })
+async function addEventsToTemplates(event) {
+  const [id] = await db("events").insert(
+    {
+      title: event.title,
+      description: event.description,
+      date: event.date,
+      time: event.time,
+      template_id: event.template_id
+    },
+    "id"
+  );
+  return db("events")
+    .where({ id })
+    .first();
 }
