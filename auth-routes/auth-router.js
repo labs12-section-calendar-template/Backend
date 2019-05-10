@@ -10,7 +10,7 @@ router.get("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect('http://localhost:3000');
+  res.redirect('https://calendr.netlify.com');
 });
 
 router.get("/google", passport.authenticate("google", {
@@ -28,9 +28,9 @@ router.get('/google/redirect', passport.authenticate('google'), async (req, res)
 
   //different front end view renders based off of whether the User has Groups or not...
   if(count.length > 0){
-    res.redirect(`http://localhost:3000/home?token=${token}&userId=${userId}`)
+    res.redirect(`https://calendr.netlify.com/home?token=${token}&userId=${userId}`)
   } else {
-    res.redirect(`http://localhost:3000?token=${token}&userId=${userId}`)
+    res.redirect(`https://calendr.netlify.com?token=${token}&userId=${userId}`)
   }
 })
 //http://localhost:3000+
