@@ -28,7 +28,7 @@ server.use(cookieSession({
 
 const corsOptions = {
     credentials: true,
-    origin: ['http://localhost:3000']
+    origin: ['https://calendr.netlify.com']
   };
 
   server.use(cors(corsOptions));
