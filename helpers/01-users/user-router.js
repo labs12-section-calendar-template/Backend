@@ -36,11 +36,12 @@ router.get('/:id/groups', async (req, res) =>{
 })
 
 router.post('/:id/groups', async (req, res) => {
-    try {const group = await Users.addGroupToUser({
+    try {
+        const group = await Users.addGroupToUser({
         joinCode: req.body.joinCode,
         name: req.body.name,
         user_id: req.params.id 
-    })
+        });
     if(group){
         res.status(200).json(group)
     } else {

@@ -47,11 +47,14 @@ function getUserGroups(userID){
         .where('groups.user_id', userID)
 }
 
-function addGroupToUser(group){
-    return db('groups')
+async function addGroupToUser(group){
+    const [id] = await db("groups")
     .insert({
         joinCode: group.joinCode,
         name: group.name,
         user_id: group.user_id
-    })
+    }, "id" );
+    return db("groups")
+        .where({ id })
+        .first();
 }
