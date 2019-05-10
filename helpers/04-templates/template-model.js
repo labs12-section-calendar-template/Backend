@@ -1,57 +1,51 @@
 const db = require("../../database/dbConfig");
 
 module.exports = {
-  find,
-  findById,
-  add,
-  getById,
-  remove,
-  update,
-  getTemplateEvents,
-  addEventsToTemplates
-};
 
-function find() {
-  return db("templates");
+    find,
+    findById,
+    add,
+    getById,
+    remove,
+    update,
+    getTemplateEvents,
+    addEventsToTemplates
 }
 
-function findById(id) {
-  return db("templates")
-    .where({ id })
-    .first();
+function find(){
+    return db('templates');
 }
 
-async function add(template) {
-  const [id] = await db("templates").insert(template, "*");
-
-  return db("templates")
-    .where({ id })
-    .first();
+function findById(id){
+    return db('templates').where({ id }).first()
 }
 
-function getById(select) {
-  return db("templates")
-    .where(select)
-    .first();
+async function add(template){
+    const [id] = await db('templates').insert(template, "*");
+
+    return db('templates').where({ id }).first()
 }
 
-function remove(id) {
-  return db("templates")
-    .where({ id })
-    .del();
+function getById(select){
+    return db('templates').where(select).first();
 }
 
-function update(id, changes) {
-  return db("templates")
-    .where({ id })
-    .update(changes, "*");
+
+function remove(id){
+    return db('templates').where({ id }).del()
 }
 
-function getTemplateEvents(templateID) {
-  return db("events")
-    .join("templates", "templates.id", "events.template_id")
-    .select("events.*")
-    .where("events.template_id", templateID);
+function update(id, changes){
+    return db('templates')
+        .where({ id })
+        .update(changes, "*");
+}
+
+function getTemplateEvents(templateID){
+    return db('events')
+        .join('templates', 'templates.id', 'events.template_id')
+        .select('events.*' )
+        .where('events.template_id', templateID)
 }
 
 async function addEventsToTemplates(event) {

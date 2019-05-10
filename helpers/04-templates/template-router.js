@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Templates = require("./template-model");
 const moment = require("moment");
 
+
 //Gets all templates
 router.get("/", async (req, res) => {
   try {
@@ -34,6 +35,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //Adds a template
+
 router.post("/", async (req, res) => {
   try {
     const template = await Templates.add({
@@ -70,6 +72,8 @@ router.get("/:id/events", async (req, res) => {
 //   }
 // });
 
+
+
 //Edits/Updates template
 router.put("/:id", async (req, res) => {
   try {
@@ -85,6 +89,7 @@ router.put("/:id", async (req, res) => {
       message: "Error updating template"
     });
   }
+
 });
 
 //Removes a template
@@ -122,5 +127,6 @@ router.post("/:id/events", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
 
 module.exports = router;
