@@ -77,7 +77,7 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .unsigned()
         .references('id')
-        .inTable('users')
+        .inTable('groups')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
     })
