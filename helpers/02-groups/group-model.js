@@ -90,7 +90,7 @@ function getBy(select) {
 
 async function addMember(member){
   const [id] = await db("members")
-  .insert(member, "*");
+  .insert(member, "id");
 
   return db("members")
     .where({ id })
