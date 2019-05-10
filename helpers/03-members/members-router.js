@@ -28,4 +28,13 @@ router.get("/", async (req, res) => {
     }
   });
 
+  router.get('/:id/groups', async (req, res) => {
+    try {
+      member = await Members.getMembersGroups(req.params.id)
+      res.status(200).json(member)
+    } catch(error){
+      res.status(500).json(error)
+    }
+  })
+
 module.exports = router;

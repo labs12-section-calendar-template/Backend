@@ -63,8 +63,8 @@ function update(id, updates) {
     .update(updates, "groups.name");
 }
 
-function addTemplateToGroup(template){
-  return db('templates')
+async function addTemplateToGroup(template){
+  const [id] = await db("templates")
   .insert({
       title: template.title,
       description: template.description,
@@ -72,7 +72,12 @@ function addTemplateToGroup(template){
       date: template.date,
       color: template.color,
       group_id: template.group_id
-  })
+  }, "id" );
+
+  return db("templates")
+  .where({ id })
+  .first()
+
 }
 
 function getBy(select) {

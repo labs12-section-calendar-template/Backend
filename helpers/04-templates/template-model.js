@@ -59,6 +59,7 @@ async function addEventsToTemplates(event) {
     },
     "id"
   );
+  
   return db("events")
     .where({ id })
     .first();
