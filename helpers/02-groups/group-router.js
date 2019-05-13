@@ -33,6 +33,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+//This endpoint should never be used
 router.post("/", (req, res) => {
   let group = req.body;
 
@@ -51,6 +53,11 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+
+  if(req.body.name < 3){
+    return res.status(404).send('Name length is required to be longer')
+  }
+
   try {
     const group = await Groups.update(req.params.id, req.body);
 
@@ -99,11 +106,18 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.post('/:id/templates', async (req, res) => {
+  let { title, description } = req.body
+  
+  if( title.length < 3 || description.length < 10){
+    return res.status(404).send('The length of your title or description is too short')
+  }
+  
   try {
       const templates = await Groups.addTemplateToGroup({
         title: req.body.title,
         description: req.body.description,
-        cycleLength: req.body.cycleLength,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
         date: moment().format("YYYY-MM-DD"),
         color: req.body.color,
         group_id: req.params.id

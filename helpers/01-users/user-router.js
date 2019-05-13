@@ -36,6 +36,13 @@ router.get('/:id/groups', async (req, res) =>{
 })
 
 router.post('/:id/groups', async (req, res) => {
+    const { joinCode, name } = req.body;
+
+    // This makes sure that the joincode and name length are the proper lengthhh
+    if(joinCode.length < 2 || name.length < 3 ){
+        return res.status(404).send('your joinCode or name length is too short')
+    }  
+    
     try {
         const group = await Users.addGroupToUser({
         joinCode: req.body.joinCode,
