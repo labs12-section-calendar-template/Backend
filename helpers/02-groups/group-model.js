@@ -68,7 +68,8 @@ async function addTemplateToGroup(template){
   .insert({
       title: template.title,
       description: template.description,
-      cycleLength: template.cycleLength,
+      startDate: template.startDate,
+      endDate: template.endDate,
       date: template.date,
       color: template.color,
       group_id: template.group_id
