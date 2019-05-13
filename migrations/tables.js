@@ -14,8 +14,6 @@ exports.up = function(knex, Promise) {
         tbl.string('googleId', 255)
         
         tbl.string('password', 255)
-
-        tbl.boolean('isAdmin').default(false);
   
     })
 
@@ -23,11 +21,9 @@ exports.up = function(knex, Promise) {
 
         tbl.increments();
 
-        tbl.integer('joinCode', 4).notNullable().unique();
+        tbl.integer('joinCode', 8).notNullable().unique();
 
         tbl.string('name', 255).notNullable();
-
-        tbl.boolean('isLocked').default(true);
 
         tbl.integer('user_id')
         .notNullable()
@@ -67,7 +63,8 @@ exports.up = function(knex, Promise) {
 
         tbl.string('description', 255).notNullable()
 
-        tbl.string('cycleLength', 255).notNullable()
+        tbl.date('startDate', 255).notNullable()
+        tbl.date('endDate', 255).notNullable()
 
         tbl.date('date', 255).notNullable()
 
@@ -88,6 +85,8 @@ exports.up = function(knex, Promise) {
         tbl.string('title', 255).notNullable()
 
         tbl.string('description', 255)
+
+        tbl.boolean('repeat').default(true)
 
         tbl.date('date', 255).notNullable()
 
