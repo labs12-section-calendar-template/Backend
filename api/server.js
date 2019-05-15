@@ -37,7 +37,7 @@ const corsOptions = {
 server.use(passport.initialize());
 server.use(passport.session());
 
-server.use(require("body-parser").text());
+// server.use(require("body-parser").text());
 server.use(express.json());
 server.use(helmet());
 server.use('/auth', authRouter);
@@ -55,9 +55,9 @@ server.get('/', (req, res) => {
 server.post("/charge", async (req, res) => {
     try {
       let {status} = await stripe.charges.create({
-        amount: 2000,
-        currency: "usd",
-        description: "An example charge",
+        amount: req.body.amount,
+        currency: req.body.currency,
+        description: req.body.description,
         source: req.body
       });
   
