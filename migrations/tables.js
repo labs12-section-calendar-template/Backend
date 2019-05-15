@@ -70,6 +70,8 @@ exports.up = function(knex, Promise) {
 
         tbl.string('color', 255).notNullable()
 
+        tbl.boolean('isChecked').default(false)
+
         tbl.integer('group_id')
         .notNullable()
         .unsigned()
@@ -90,7 +92,8 @@ exports.up = function(knex, Promise) {
 
         tbl.date('date', 255).notNullable()
 
-        tbl.string('time', 255).notNullable()
+        tbl.string('startTime', 255).notNullable()
+        tbl.string('endTime', 255).notNullable()
 
         tbl.integer('template_id')
         .unsigned()
