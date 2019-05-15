@@ -54,7 +54,8 @@ async function addEventsToTemplates(event) {
       title: event.title,
       description: event.description,
       date: event.date,
-      time: event.time,
+      startTime: event.startTime,
+      endTime: event.endTime,
       template_id: event.template_id
     },
     "id"
