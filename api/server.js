@@ -5,7 +5,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('../config/keys')
 const server = express();
-const stripe = require('stripe')('pk_test_Nz6oYTpIVthIS5W8jol7pd9Y00gIlzGMsm')
+const stripe = require('stripe')('sk_test_CMDTVD19p99Zlgwh9GsO1ucU00btArWuAu')
 
 // const authRouter = require('../helpers/00-auth/auth-router') <----- old auth linked here
 const authRouter = require('../auth-routes/auth-router');
