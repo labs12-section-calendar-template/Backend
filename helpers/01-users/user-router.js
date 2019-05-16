@@ -41,20 +41,31 @@ router.post('/:id/groups', async (req, res) => {
     // This makes sure that the joincode and name length are the proper lengthhh
     if(joinCode.length < 2 || name.length < 3 ){
         return res.status(404).send('your joinCode or name length is too short')
-    }  
-    
-    try {
-        const group = await Users.addGroupToUser({
-        joinCode: req.body.joinCode,
-        name: req.body.name,
-        user_id: req.params.id 
-        });
-    if(group){
-        res.status(200).json(group)
-    } else {
-        res.status(404).send('could not add the group to the user... User Error')
-    } } catch(error){
-        res.status(500).json(error)
+    }  else {
+        const users = await Users.findById(req.params.id)
+        const groups = await Users.getUserGroups(req.params.id)
+        if(!users.premiumStatus && groups.length >= 1){
+            res.status(404).send('You need premium status to create more than one group')
+        } else if (users.premiumStatus && groups.length === 5){
+            res.status(404).send('You already have the maximum number of groups created')
+        } else 
+            {
+            console.log(groups.length)
+            console.log(users.premiumStatus)
+            try {
+                const group = await Users.addGroupToUser({
+                joinCode: req.body.joinCode,
+                name: req.body.name,
+                user_id: req.params.id 
+                });
+            if(group){
+                res.status(200).json(group)
+            } else {
+                res.status(404).send('could not add the group to the user... User Error')
+            } } catch(error){
+                res.status(500).json(error)
+            }
+        }
     }
 })
 

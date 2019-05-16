@@ -14,6 +14,8 @@ exports.up = function(knex, Promise) {
         tbl.string('googleId', 255)
         
         tbl.string('password', 255)
+
+        tbl.boolean('premiumStatus').default(false)
   
     })
 
