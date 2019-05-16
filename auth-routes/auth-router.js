@@ -28,7 +28,7 @@ router.get('/google/redirect', passport.authenticate('google'), async (req, res)
 
   //different front end view renders based off of whether the User has Groups or not...
   if(count.length > 0){
-    res.redirect(`${process.env.FRONT_END_URL}/home?token=${token}&userId=${userId}`)
+    res.redirect(`${process.env.FRONT_END_URL}/home/${count[0].id}?token=${token}&userId=${userId}&group_id=${count[0].id}`)
   } else {
     res.redirect(`${process.env.FRONT_END_URL}?token=${token}&userId=${userId}`)
   }
