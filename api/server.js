@@ -5,7 +5,8 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('../config/keys')
 const server = express();
-const stripe = require('stripe')('pk_test_Nz6oYTpIVthIS5W8jol7pd9Y00gIlzGMsm')
+const stripe = require('stripe')('sk_test_CMDTVD19p99Zlgwh9GsO1ucU00btArWuAu')
+const User = require('../helpers/01-users/user-model')
 
 // const authRouter = require('../helpers/00-auth/auth-router') <----- old auth linked here
 const authRouter = require('../auth-routes/auth-router');
@@ -52,16 +53,20 @@ server.get('/', (req, res) => {
     res.send("Calendar server is up and running!")
 });
 
-server.post("/charge", async (req, res) => {
+server.post("/charge/:id", async (req, res) => {
     try {
       let {status} = await stripe.charges.create({
-        amount: 2000,
+        amount: 999,
         currency: "usd",
-        description: "an example charge",
+        description: "Calendr premium membership",
         source: req.body.tokenId
       });
   
-      res.json({status});
+      if(status){
+        let premiumUser = User.update({ id: req.params.id, premiumStatus: true})
+        res.status(200).json({ status, premiumUser })
+      }
+      // res.json({status});
     } catch (err) {
       res.status(500).end();
     }
