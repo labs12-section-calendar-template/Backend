@@ -55,10 +55,10 @@ server.get('/', (req, res) => {
 server.post("/charge", async (req, res) => {
     try {
       let {status} = await stripe.charges.create({
-        amount: req.body.amount,
-        currency: req.body.currency,
-        description: req.body.description,
-        source: req.body
+        amount: 2000,
+        currency: "usd",
+        description: "an example charge",
+        source: req.body.tokenId
       });
   
       res.json({status});
