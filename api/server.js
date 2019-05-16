@@ -63,7 +63,7 @@ server.post("/charge/:id", async (req, res) => {
       });
   
       if(status){
-        let premiumUser = User.update({ id: req.params.id, premiumStatus: true})
+        let premiumUser = User.update( req.params.id, { premiumStatus: 1 })
         res.status(200).json({ status, premiumUser })
       }
       // res.json({status});
