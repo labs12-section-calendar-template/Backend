@@ -71,7 +71,6 @@ async function addTemplateToGroup(template){
       startDate: template.startDate,
       endDate: template.endDate,
       date: template.date,
-      color: template.color,
       group_id: template.group_id
   }, "id" );
 

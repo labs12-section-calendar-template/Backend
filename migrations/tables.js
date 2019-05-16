@@ -68,8 +68,6 @@ exports.up = function(knex, Promise) {
 
         tbl.date('date', 255).notNullable()
 
-        tbl.string('color', 255).notNullable()
-
         tbl.boolean('isChecked').default(false)
 
         tbl.integer('group_id')
