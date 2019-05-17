@@ -130,6 +130,16 @@ router.post('/:id/templates', async (req, res) => {
   }
 })
 
+router.get('/getby/joincode', async (req, res) => {
+  try {
+  group = await Groups.getBy({ joinCode: req.body.joinCode })
+  res.status(200).json(group)
+  } catch(err){
+    res.status(500).json({error})
+  }
+
+})
+
 router.post('/getby/:user_id', async (req, res) => {
 
       try{
