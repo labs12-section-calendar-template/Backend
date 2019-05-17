@@ -54,7 +54,7 @@ router.post('/:id/groups', async (req, res) => {
             console.log(users.premiumStatus)
             try {
                 const group = await Users.addGroupToUser({
-                joinCode: req.body.joinCode,
+                joinCode: Number(req.body.joinCode),
                 name: req.body.name,
                 user_id: req.params.id 
                 });
