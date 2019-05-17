@@ -61,9 +61,13 @@ server.post("/charge/:id", async (req, res) => {
         description: "Calendr premium membership",
         source: req.body.tokenId
       });
-  
+ console.log(status)
       if(status){
+<<<<<<< HEAD
+        let premiumUser = await User.update( req.params.id, { premiumStatus: 1 })
+=======
         let premiumUser = User.update( req.params.id, { premiumStatus: 1 })
+>>>>>>> e62333bc33ce630e79b866a60b844d53d35c93e2
         res.status(200).json({ status, premiumUser })
       }
       // res.json({status});
