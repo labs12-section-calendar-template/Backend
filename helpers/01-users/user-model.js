@@ -8,7 +8,8 @@ module.exports = {
     getBy,
     remove,
     getUserGroups,
-    addGroupToUser
+    addGroupToUser,
+    update
 
 }
 
@@ -58,3 +59,9 @@ async function addGroupToUser(group){
         .where({ id })
         .first();
 }
+
+function update(id, updates) {
+    return db("users")
+      .where({ id })
+      .update(updates, "users.premiumStatus");
+  }
