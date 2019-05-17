@@ -137,8 +137,13 @@ router.post('/getby/:user_id', async (req, res) => {
          
          if(group){
            try{
-             member = await Groups.addMember({ user_id: req.params.user_id, group_id: group.id })
-             res.status(200).json({ member, message: "member is now in existence" })
+             existing = await Groups.getGroupMember({ user_id: req.params.user_id, group_id: group.id })
+            if(existing){
+              res.status(200).json({existing, message: "welcome back"})
+            } else if (!existing){
+              member = await Groups.addMember({ user_id: req.params.user_id, group_id: group.id })
+              res.status(200).json({ member, message: "member is now in existence" })
+            }
            } catch(error){
              console.log(error)
              res.status(500).json({ message: "error 1 adding user error", error })
