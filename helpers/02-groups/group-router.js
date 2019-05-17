@@ -139,7 +139,9 @@ router.post('/getby/:user_id', async (req, res) => {
            try{
              console.log('existing')
             let existing = await Groups.getGroupMember({ user_id: req.params.user_id, group_id: group.id })
-             console.log(existing)
+             console.log(req.params.user_id)
+             
+            console.log(existing)
              if(existing){
               res.status(200).json({group, message: "welcome back"})
             } else if (!existing){
