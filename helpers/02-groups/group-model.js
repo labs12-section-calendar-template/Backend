@@ -10,7 +10,8 @@ module.exports = {
   getGroupMembers,
   addTemplateToGroup,
   addMember,
-  update
+  update,
+  getGroupMember
 };
 
 function find(){
@@ -95,4 +96,8 @@ async function addMember(member){
   return db("members")
     .where({ id })
     .first();
+}
+
+function getGroupMember(options){
+  return db("members").where(options, '*')
 }
