@@ -144,7 +144,7 @@ router.post('/getby/:user_id', async (req, res) => {
 
       try{
          group = await Groups.getBy({ joinCode: Number(req.body.joinCode) });
-         
+         console.log(group)
          if(group){
            try{
              console.log('existing')
