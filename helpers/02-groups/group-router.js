@@ -173,7 +173,7 @@ router.post('/getby/:user_id', async (req, res) => {
       }
   })
 
-  router.post('/getwith/joincode', async (req, res) => {
+  router.get('/getwith/joincode', async (req, res) => {
     try {
     group = await Groups.getBy({ joinCode: Number(req.body.joinCode) })
     res.status(200).json(group)
