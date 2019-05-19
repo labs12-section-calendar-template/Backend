@@ -175,7 +175,7 @@ router.post('/getby/:user_id', async (req, res) => {
 
   router.get('/getwith/joincode', async (req, res) => {
     try {
-    group = await Groups.getBy({ name: req.body.name })
+    group = await Groups.getBy({ joinCode: req.body.joinCode })
     res.status(200).json(group)
     } catch(err){
       res.status(500).send('OH NO')
