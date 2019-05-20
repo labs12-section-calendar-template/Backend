@@ -172,7 +172,7 @@ router.post('/getby/:user_id', async (req, res) => {
           res.status(500).json({ message: "error 2 getting group error", error })
       }
   })
-
+          //getby/joincode
   router.post('/getwith/joincode', async (req, res) => {
     try {
     group = await Groups.getBy({ joinCode: req.body.joinCode })
