@@ -46,11 +46,11 @@ server.use('/auth', authRouter);
 server.use('/users', userRouter);
 server.use('/groups', groupRouter);
 server.use('/members', memberRouter);
-server.use('/templates', authCheck, templateRouter);
-server.use('/events', eventRouter);
-server.use('/profile', profileRouter)
+server.use('/templates', passport.authenticate('google', { failureRedirect: '/login' }), templateRouter);
+server.use('/events', passport.authenticate('google', { failureRedirect: '/login' }), eventRouter);
+server.use('/profile', passport.authenticate('google', { failureRedirect: '/login' }), profileRouter)
 
-server.get('/', (req, res) => {
+server.get('/', authCheck, (req, res) => {
     res.send("Calendar server is up and running!")
 });
 

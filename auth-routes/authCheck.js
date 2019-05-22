@@ -1,16 +1,17 @@
 const router = require('express').Router();
 
 const authCheck = (req, res, next) => {
-    if(!req.user){
+    if(!req.user.token){
+        console.log('tehee')
         res.redirect('/auth/login');
     } else {
-        console.log(req.user)
+         res.send(req.user.token)
         next();
-    }
+     }
 };
 
 router.get('/', authCheck, (req, res) => {
-    res.send('This profile belongs to ' + req.user.displayName);
+    res.status(200).json({ message: req.user.token})
 });
 
 module.exports = router;
