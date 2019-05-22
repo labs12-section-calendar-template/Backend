@@ -1,17 +1,24 @@
-const router = require('express').Router();
+const jwt = require('jsonwebtoken')
+const secret = require('./secret').jwtSecret;
 
-const authCheck = (req, res, next) => {
-    if(!req.user.token){
-        console.log('tehee')
-        res.redirect('/auth/login');
-    } else {
-         res.send(req.user.token)
+
+module.exports = {
+    authCheck
+}
+
+function authCheck(req, res, next) {
+    const token = req.get('Authorization');
+  
+    if (token) {
+      jwt.verify(token, secret, (err, decoded) => {
+        if (err) return res.status(401).json(err);
+        req.decoded = decoded;
         next();
-     }
-};
-
-router.get('/', authCheck, (req, res) => {
-    res.status(200).json({ message: req.user.token})
-});
-
-module.exports = router;
+      });
+    } else {
+      res.status(401).json({
+        error: 'No token provided, must be set on the Authorization Header',
+      });
+      res.redirect(`${process.env.FRONT_END_URL}/logout`)
+    }
+  }

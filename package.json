@@ -22,6 +22,7 @@
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",
+    "passport-google-token": "^0.1.2",
     "pg": "^7.10.0",
     "sqlite3": "^4.0.6",
     "stripe": "^7.0.0"
