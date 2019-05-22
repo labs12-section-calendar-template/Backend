@@ -7,6 +7,7 @@ const keys = require('../config/keys')
 const server = express();
 const stripe = require('stripe')('sk_test_CMDTVD19p99Zlgwh9GsO1ucU00btArWuAu')
 const User = require('../helpers/01-users/user-model')
+const authCheck = require('../auth-routes/authCheck')
 
 // const authRouter = require('../helpers/00-auth/auth-router') <----- old auth linked here
 const authRouter = require('../auth-routes/auth-router');
@@ -45,7 +46,7 @@ server.use('/auth', authRouter);
 server.use('/users', userRouter);
 server.use('/groups', groupRouter);
 server.use('/members', memberRouter);
-server.use('/templates', templateRouter);
+server.use('/templates', authCheck, templateRouter);
 server.use('/events', eventRouter);
 server.use('/profile', profileRouter)
 
