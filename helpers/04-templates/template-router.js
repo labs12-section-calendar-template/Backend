@@ -115,6 +115,7 @@ router.post("/:id/events", async (req, res) => {
       date: req.body.date,
       startTime: req.body.startTime,
       endTime: req.body.endTime,
+      repeat: req.body.repeat,
       template_id: req.params.id
     });
     if (event) {
