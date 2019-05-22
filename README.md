@@ -28,3 +28,12 @@
 | POST   | `/groups/:id/templates` | Creates a new template for the group with the provided id |
 | PUT    | `/groups/:id`           | Edits info for the group with the provided id.            |
 | DELETE | `/groups/:id`           | Deletes user with the provided id                         |
+
+
+#### Member Routes
+
+| Method | Endpoint              | Description                                     |
+| ------ | --------------------- | ----------------------------------------------- |
+| GET    | `/members`            | Returns info for all members.                   |
+| GET    | `/members/:id/groups` | Returns groups for member with the provided id. |
+| DELETE | `/members/delete/:id` | Deletes member with the provided id             |
