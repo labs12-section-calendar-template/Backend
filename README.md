@@ -1,33 +1,19 @@
-# Backend
-
-***endpoints for AUTH table***
-
-    - /auth/register - register a user using a .POST
-        ## data requirement example ##
-        {
-        "fullname": "Bob Man",
-        "email": "bob@yahoo.com",
-        "username": "bobber",
-        "password": "bob",
-        }
-
-    - /auth/login - login with a user using a .POST
-        "username": "bobber",
-        "password": "bob"
-
-        *** passwords for seed users ***
-            jakefromstatefarm = jake
-            maxfromstatefarm = max
-            terrellfromstatefarm = terrell
-            ilyafromstatefarm = ilya
 
 
-    - /auth/checkauth - use this endpoint with a .POST to allow for data persistence on page refresh
+# Section Calendar Template Manager 
 
-***endpoints for USERS table***
+## Backend 
 
-    - /users  - get an array of user objects using a .GET
+#### Backend Deployment: https://calendrserver.herokuapp.com <br>
 
-    - /users/:id - get a user b their id
-    
-    - /users/:user_id/groups - gets the groups belonging to a user by user_id using a .GET
+#### Users Routes
+
+| Method | Endpoint            | Description                                            |
+| ------ | ------------------- | ------------------------------------------------------ |
+| GET    | `/users`            | Returns info for all users.                            |
+| GET    | `/users/:id`        | Returns only the user with the provided id.            |
+| GET    | `/users/:id/groups` | Returns all groups for the user with the provided id.  |
+| POST   | `/users/:id/groups` | Creates a new group for the user with the provided id. |
+| POST   | `/users`            | Creates a new user                                     |
+| DELETE | `/users/:id`        | Deletes user with the provided id                      |
+
