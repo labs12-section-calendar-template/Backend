@@ -56,6 +56,12 @@
 | ------ | ------------- | ---------------------------------------------- |
 | GET    | `/events`     | Returns info for all events.                   |
 | GET    | `/events/:id` | Returns the event with the provided id.        |
-| POST   | `/events`     | Creates a new event                            |
+| POST   | `/events`     | Creates a new event.                           |
 | PUT    | `/events/:id` | Edits info for the event with the provided id. |
 | DELETE | `/events/:id` | Deletes event with the provided id.            |
+
+<br>
+
+# Data Model
+
+![](/datamodel.png)
