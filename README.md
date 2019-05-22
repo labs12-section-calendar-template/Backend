@@ -6,7 +6,7 @@
 
 #### Backend Deployment: https://calendrserver.herokuapp.com <br>
 
-#### User Routes
+### User Routes
 
 | Method | Endpoint            | Description                                            |
 | ------ | ------------------- | ------------------------------------------------------ |
@@ -17,7 +17,7 @@
 | POST   | `/users`            | Creates a new user                                     |
 | DELETE | `/users/:id`        | Deletes user with the provided id                      |
 
-#### Group Routes
+### Group Routes
 
 | Method | Endpoint                | Description                                               |
 | ------ | ----------------------- | --------------------------------------------------------- |
@@ -30,10 +30,32 @@
 | DELETE | `/groups/:id`           | Deletes user with the provided id                         |
 
 
-#### Member Routes
+### Member Routes
 
 | Method | Endpoint              | Description                                     |
 | ------ | --------------------- | ----------------------------------------------- |
 | GET    | `/members`            | Returns info for all members.                   |
 | GET    | `/members/:id/groups` | Returns groups for member with the provided id. |
 | DELETE | `/members/delete/:id` | Deletes member with the provided id             |
+
+### Template Routes
+
+| Method | Endpoint                | Description                                                |
+| ------ | ----------------------- | ---------------------------------------------------------- |
+| GET    | `/templates`            | Returns info for all templates.                            |
+| GET    | `/templates/:id`        | Returns the template with the provided id.                 |
+| GET    | `/templates/:id/events` | Returns all events for template with the provided id.      |
+| POST   | `/templates`            | Creates a new template.                                    |
+| POST   | `/templates/:id/events` | Creates a new event for the template with the provided id. |
+| PUT    | `/templates/:id`        | Edits info for the template with the provided id.          |
+| DELETE | `/templates/:id`        | Deletes template with the provided id                      |
+
+### Event Routes
+
+| Method | Endpoint      | Description                                    |
+| ------ | ------------- | ---------------------------------------------- |
+| GET    | `/events`     | Returns info for all events.                   |
+| GET    | `/events/:id` | Returns the event with the provided id.        |
+| POST   | `/events`     | Creates a new event                            |
+| PUT    | `/events/:id` | Edits info for the event with the provided id. |
+| DELETE | `/events/:id` | Deletes event with the provided id.            |
