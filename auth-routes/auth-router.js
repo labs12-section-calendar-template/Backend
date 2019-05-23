@@ -22,7 +22,6 @@ router.get("/google", passport.authenticate("google", {
 router.get('/google/redirect', passport.authenticate('google'), async (req, res) =>{
   
   let token = generateToken(req.user);
-  let googleToken = req.user.token
   let userId = req.user.id;
   
   count = await User.getUserGroups(userId)

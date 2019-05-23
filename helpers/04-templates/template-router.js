@@ -108,7 +108,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id/events", authCheck, async (req, res) => {
+router.post("/:id/events", async (req, res) => {
   try {
     const event = await Templates.addEventsToTemplates({
       title: req.body.title,

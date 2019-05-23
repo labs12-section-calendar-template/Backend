@@ -7,7 +7,7 @@ const keys = require('../config/keys')
 const server = express();
 const stripe = require('stripe')('sk_test_CMDTVD19p99Zlgwh9GsO1ucU00btArWuAu')
 const User = require('../helpers/01-users/user-model')
-const authCheck = require('../auth-routes/authCheck')
+const { authCheck } = require('../auth-routes/authCheck')
 
 // const authRouter = require('../helpers/00-auth/auth-router') <----- old auth linked here
 const authRouter = require('../auth-routes/auth-router');
@@ -43,17 +43,17 @@ server.use(passport.session());
 server.use(express.json());
 server.use(helmet());
 server.use('/auth', authRouter);
-server.use('/users', userRouter);
-server.use('/groups', groupRouter);
-server.use('/members', memberRouter);
-server.use('/templates', templateRouter);
-server.use('/events', eventRouter);
+server.use('/users',authCheck,  userRouter);
+server.use('/groups', authCheck, groupRouter);
+server.use('/members', authCheck, memberRouter);
+server.use('/templates', authCheck, templateRouter);
+server.use('/events', authCheck, eventRouter);
 
 server.get('/', (req, res) => {
     res.send("Calendar server is up and running!")
 });
 
-server.post("/charge/:id", async (req, res) => {
+server.post("/charge/:id", authCheck, async (req, res) => {
     try {
       let {status} = await stripe.charges.create({
         amount: 999,
