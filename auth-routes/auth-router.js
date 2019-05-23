@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 const User = require('../helpers/01-users/user-model')
+const { generateToken } = require('./token')
 require('dotenv').config();
 
 
@@ -20,7 +21,7 @@ router.get("/google", passport.authenticate("google", {
 
 router.get('/google/redirect', passport.authenticate('google'), async (req, res) =>{
   
-  let token = req.user.token;
+  let token = generateToken(req.user);
   let userId = req.user.id;
   
   count = await User.getUserGroups(userId)
@@ -33,9 +34,6 @@ router.get('/google/redirect', passport.authenticate('google'), async (req, res)
     res.redirect(`${process.env.FRONT_END_URL}?token=${token}&userId=${userId}`)
   }
 })
-//http://localhost:3000+
-//https://calendr.netlify.com?token=${token}&userId=${userId}
-
 
 module.exports = router;
 

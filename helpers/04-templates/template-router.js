@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Templates = require("./template-model");
 const moment = require("moment");
+const { authCheck } = require('../../auth-routes/authCheck')
 
 
 //Gets all templates
