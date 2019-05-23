@@ -1,7 +1,4 @@
 
-
-# Section Calendar Template Manager 
-
 ## Backend 
 
 #### Backend Deployment: https://calendrserver.herokuapp.com <br>
@@ -59,7 +56,7 @@
 | POST   | `/events`     | Creates a new event.                           |
 | PUT    | `/events/:id` | Edits info for the event with the provided id. |
 | DELETE | `/events/:id` | Deletes event with the provided id.            |
-
+ 
 <br>
 
 # Data Model
@@ -223,3 +220,23 @@
 
 `addEventsToTemplates(event)` --> Creates event and adds to template
 
+
+#### Events
+
+`find()` --> Returns all events
+
+`findById(id)` --> Returns event by id
+
+`add(event)` --> Creates new event
+
+`update(id,changes)` --> Edits event's info
+
+`remove(id)` --> Delete event by id
+
+
+
+
+## Front-End Documentation 
+
+Refer to [Front-End Docs](https://github.com/labs12-section-calendar-template/Front-End) to view
+our Front-End information
