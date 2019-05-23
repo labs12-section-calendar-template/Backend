@@ -181,7 +181,7 @@
 
 `add(group)` --> Creates new group
 
-`getBy(select)` -->
+`getBy(select)` --> Returns group by join code
 
 `remove(id)` --> Deletes group by id
 
@@ -196,4 +196,30 @@
 `update(id, updates)` --> Edits group's info by id
 
 `getGroupMember(options)` --> Returns member in group
+
+
+#### Members 
+
+`find()` --> Returns all members
+
+`remove(id)` --> Deletes single member by id
+
+`getMembersGroups(memberId)` --> Returns groups by member's id
+
+
+#### Templates 
+
+`find()` --> Returns all templates
+
+`findById(id)` --> Returns single template by id
+
+`add(template)` --> Creates new template
+
+`remove(id)` --> Deletes template by id
+
+`update(id)` --> Edits template's info
+
+`getTemplateEvents(templateID)` --> Returns events by template id
+
+`addEventsToTemplates(event)` --> Creates event and adds to template
 
