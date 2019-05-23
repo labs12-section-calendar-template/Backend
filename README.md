@@ -65,3 +65,87 @@
 # Data Model
 
 ![](/datamodel.png)
+
+
+#### Users
+
+---
+
+```
+{
+    id: INTEGER
+    fullname: STRING
+    email: STRING
+    username: STRING
+    googleId: STRING
+    password: STRING
+    premiumStatus: BOOLEAN
+}
+```
+
+#### Groups
+
+---
+
+```
+{
+    id: INTEGER
+    joinCode: INTEGER   
+    name: STRING
+    user_id: INTEGER foreign key in Users table
+ 
+}
+```
+
+#### Members
+
+---
+
+```
+{
+    id: INTEGER
+    user_id: INTEGER foreign key in Users table  
+    group_id: INTEGER foreign key in Groups table
+  
+ 
+}
+```
+
+#### Templates
+
+---
+
+```
+{
+    id: INTEGER
+    title: STRING
+    description: STRING
+    startDate: DATE
+    endDate: DATE
+    date: DATE
+    isChecked: BOOLEAN
+    group_id: INTEGER foreign key in Groups table
+  
+ 
+}
+```
+
+
+#### Events
+
+---
+
+```
+{
+    id: INTEGER
+    title: STRING
+    description: STRING
+    repeat: BOOLEAN
+    date: DATE
+    startTime: STRING
+    endTime: STRING
+    template_id: INTEGER foreign key in Templates table
+  
+ 
+}
+```
