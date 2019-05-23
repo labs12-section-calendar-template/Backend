@@ -149,3 +149,51 @@
  
 }
 ```
+
+
+## Actions
+
+#### Users
+
+`find()` --> Returns all users
+
+`findById(id)` --> Returns single user by id
+
+`findByGoogleId(profileId)` --> Returns user's googleId
+
+`add(user)` --> Creates new user
+
+`remove(id)` --> Deletes user by id
+
+`getUserGroups(userID)` --> Returns groups for user
+
+`addGroupToUser(group)` --> Adds group to single user
+
+`function update(id, updates)` --> Edits user's info
+
+
+
+#### Groups
+
+`find()` --> Returns all groups
+
+`findById(id)` --> Returns single group by id
+
+`add(group)` --> Creates new group
+
+`getBy(select)` -->
+
+`remove(id)` --> Deletes group by id
+
+`getGroupTemplates(groupID)` --> Returns templates by group_id
+
+`getGroupMembers(groupId)` --> Returns members by group_id
+
+`addTemplateToGroup(template)` --> Creates new template for group
+
+`addMember(member)` --> Creates new member
+
+`update(id, updates)` --> Edits group's info by id
+
+`getGroupMember(options)` --> Returns member in group
+
